@@ -6,7 +6,7 @@ SLAM chain: cuVSLAM, TCP relay, nvblox stream, grid map.
 |---|---|
 | Layer | **L2**: Domain (no cross-imports) |
 | May import | [k1-common](https://github.com/thdhyan/k1-common), [k1-data](https://github.com/thdhyan/k1-data) |
-| Files / LOC | 20 files · 1,272 lines (py, sh, cpp) |
+| Files / LOC | 20 files · 1,274 lines (py, sh, cpp) |
 | Part of | [k1-workspace](https://github.com/thdhyan/k1-workspace) (architecture and layering rules live there) |
 
 ## Where it sits
@@ -35,6 +35,29 @@ Not an installable library: clone it and run the scripts in place.
 ```bash
 git clone https://github.com/thdhyan/k1-perception
 ```
+
+## Usage
+
+SLAM chain for the K1 head cameras. Not an installable library: run the scripts in place.
+
+- `real_robot/slam_onboard/`: cuVSLAM node, TCP relay, nvblox stream and grid map on the robot. `laptop_rviz.sh`
+  and `laptop_nvblox.sh` are the laptop viewers. Meshes come from k1-description (`K1_ASSETS_DIR` overrides).
+- `real_robot/slam_dl/`: the same SLAM in a container on `dl`.
+- `real_robot/map_run/record_rgbd.py`: RGB-D recorder.
+
+Runbook: `docs/legacy/k1_slam_runbook.md` in k1-workspace. Robot addresses: [docs/ROBOTS.md](https://github.com/thdhyan/k1-workspace/blob/main/docs/ROBOTS.md).
+
+## Tests
+
+No tests yet.
+
+## Robots and hosts
+
+Robot IPs, SSH aliases, network, safety and how to control each robot: [docs/ROBOTS.md](https://github.com/thdhyan/k1-workspace/blob/main/docs/ROBOTS.md) in k1-workspace.
+
+## Environment variables read
+
+`K1_ASSETS_DIR`, `K1_VIZ_DOMAIN`
 
 ## Layout
 
