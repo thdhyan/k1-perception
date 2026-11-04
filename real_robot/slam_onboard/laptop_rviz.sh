@@ -8,8 +8,10 @@ D=$(dirname "$(readlink -f "$0")")
 REPO=$(readlink -f $D/../..)
 ROBOT_IP=${1:-192.168.50.82}
 TMP=${XDG_RUNTIME_DIR:-/tmp}
-# URDF meshes point at the robot's /opt/booster copy; use the booster_assets submodule instead.
-sed "s|file:///opt/booster/Gait/configs/booster_assets/robots/K1/meshes/|file://$REPO/src/k1_description/assets/robots/K1/meshes/|" \
+# URDF meshes point at the robot's /opt/booster copy; use k1-description's booster_assets instead.
+ASSETS=$(readlink -f "${K1_ASSETS_DIR:-$REPO/../k1-description/assets}")
+[ -d "$ASSETS/robots/K1/meshes" ] || { echo "K1 meshes not found under $ASSETS (set K1_ASSETS_DIR)"; exit 1; }
+sed "s|file:///opt/booster/Gait/configs/booster_assets/robots/K1/meshes/|file://$ASSETS/robots/K1/meshes/|" \
   $REPO/real_robot/urdf/k1_robot_description.urdf | sed '/<\/robot>/q' > $TMP/k1_rviz.urdf  # file ends with a stray "---"
 source /opt/ros/jazzy/setup.bash
 export ROS_DOMAIN_ID=${K1_VIZ_DOMAIN:-42} ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
