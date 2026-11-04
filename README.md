@@ -6,8 +6,28 @@ SLAM chain: cuVSLAM, TCP relay, nvblox stream, grid map.
 |---|---|
 | Layer | **L2**: Domain (no cross-imports) |
 | May import | [k1-common](https://github.com/thdhyan/k1-common), [k1-data](https://github.com/thdhyan/k1-data) |
-| Files / LOC | 23 files · 1,272 lines (py, sh, cpp) |
+| Files / LOC | 20 files · 1,272 lines (py, sh, cpp) |
 | Part of | [k1-workspace](https://github.com/thdhyan/k1-workspace) (architecture and layering rules live there) |
+
+## Where it sits
+
+```mermaid
+flowchart TB
+  k1_common[k1-common]
+  k1_data[k1-data]
+  k1_deploy_robot[k1-deploy-robot]
+  k1_deploy_laptop[k1-deploy-laptop]
+  k1_perception((k1-perception))
+  style k1_perception fill:#e8833a,color:#000
+  k1_deploy_robot --> k1_perception
+  k1_deploy_laptop --> k1_perception
+  k1_perception --> k1_common
+  k1_perception --> k1_data
+```
+
+Used by: k1-deploy-robot, k1-deploy-laptop.
+
+![k1-workspace layers](https://raw.githubusercontent.com/thdhyan/k1-workspace/main/docs/img/architecture.png)
 
 ## Install
 
@@ -19,6 +39,7 @@ git clone https://github.com/thdhyan/k1-perception
 ## Layout
 
 ```
+README.md
 pyproject.toml
 real_robot/  (24 files)
   README.md
