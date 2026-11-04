@@ -1,0 +1,23 @@
+[project]
+name = "k1-perception"
+version = "0.1.0"
+description = "SLAM chain: cuVSLAM, TCP relay, nvblox stream, grid map."
+requires-python = ">=3.10"
+dependencies = [
+  "matplotlib",
+  "numpy",
+  "opencv-python",
+  "scipy",
+  "k1-common",
+  "k1-data",
+]
+
+[tool.uv.sources]
+k1-common = { git = "https://github.com/thdhyan/k1-common" }
+k1-data = { git = "https://github.com/thdhyan/k1-data" }
+
+[tool.uv]
+package = false  # scripts / ROS packages, not an importable library
+
+# Provided by the environment (ROS 2, Isaac Sim/Lab, mjlab, robot SDK) or not on PyPI under this name:
+# builtin_interfaces, cuvslam, geometry_msgs, nav_msgs, rclpy, rosidl_runtime_py, sensor_msgs, std_msgs, tf2_msgs, tf2_ros, visualization_msgs

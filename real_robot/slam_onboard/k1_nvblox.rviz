@@ -1,0 +1,212 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Help Height: 0
+    Tree Height: 600
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Plane Cell Count: 20
+      Color: 160; 160; 164
+    - Class: rviz_default_plugins/Axes
+      Name: map
+      Enabled: true
+      Reference Frame: map
+      Length: 0.5
+      Radius: 0.02
+    - Class: rviz_default_plugins/Map
+      Name: 2D map
+      Enabled: true
+      Topic:
+        Value: /k1_0/map
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+        Depth: 1
+      Color Scheme: map
+      Alpha: 0.8
+      Draw Behind: true
+    - Class: rviz_default_plugins/Map
+      Name: costmap
+      Enabled: true
+      Topic:
+        Value: /k1_0/costmap
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+        Depth: 1
+      Color Scheme: costmap
+      Alpha: 0.5
+      Draw Behind: false
+    - Class: rviz_default_plugins/Marker
+      Name: collision
+      Enabled: true
+      Topic:
+        Value: /k1_0/collision
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 2
+    - Class: rviz_default_plugins/PointCloud2
+      Name: depth points
+      Enabled: false
+      Topic:
+        Value: /k1_0/slam/depth_points
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 2
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: AxisColor
+      Axis: Z
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+      Alpha: 1
+    - Class: rviz_default_plugins/Map
+      Name: 2D occupancy (static_occupancy_grid)
+      Enabled: true
+      Topic:
+        Value: /nvblox_node/static_occupancy_grid
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 1
+      Color Scheme: map
+      Alpha: 0.7
+      Draw Behind: true
+    - Class: nvblox_rviz_plugin/NvbloxMesh
+      Name: 3D mesh
+      Enabled: true
+      Topic:
+        Value: /nvblox_node/mesh
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 10
+    - Class: rviz_default_plugins/Marker
+      Name: 3D voxels (tsdf_layer_marker)
+      Enabled: false
+      Topic:
+        Value: /nvblox_node/tsdf_layer_marker
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 1
+    - Class: rviz_default_plugins/Marker
+      Name: 3D voxels coloured (color_layer_marker)
+      Enabled: false
+      Topic:
+        Value: /nvblox_node/color_layer_marker
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 1
+    - Class: rviz_default_plugins/PointCloud2
+      Name: ESDF slice (obstacle distance)
+      Enabled: false
+      Topic:
+        Value: /nvblox_node/static_esdf_pointcloud
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 1
+      Style: Boxes
+      Size (m): 0.05
+      Color Transformer: Intensity
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Show Arrows: false
+      Show Axes: true
+      Show Names: false
+      Marker Scale: 0.3
+    - Class: rviz_default_plugins/PointCloud2
+      Name: global map (all landmarks)
+      Enabled: true
+      Topic:
+        Value: /k1_0/slam/landmarks/global
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+        Depth: 1
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: AxisColor
+      Axis: Z
+      Use rainbow: true
+    - Class: rviz_default_plugins/PointCloud2
+      Name: local map (landmarks in view)
+      Enabled: true
+      Topic:
+        Value: /k1_0/slam/landmarks/local
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 2
+      Style: Flat Squares
+      Size (m): 0.03
+      Color Transformer: FlatColor
+      Color: 0; 255; 0
+    - Class: rviz_default_plugins/Marker
+      Name: status
+      Enabled: true
+      Topic:
+        Value: /k1_0/slam/status
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 2
+    - Class: rviz_default_plugins/Image
+      Name: camera + tracked features
+      Enabled: true
+      Topic:
+        Value: /k1_0/slam/features/image/compressed
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 2
+    - Class: rviz_default_plugins/Path
+      Name: SLAM path
+      Enabled: true
+      Topic:
+        Value: /k1_0/slam/path
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 1
+      Color: 255; 200; 0
+      Line Style: Billboards
+      Line Width: 0.03
+    - Class: rviz_default_plugins/Odometry
+      Name: SLAM pose
+      Enabled: true
+      Topic:
+        Value: /k1_0/slam/odometry
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        Depth: 5
+      Keep: 1
+      Shape:
+        Value: Axes
+        Axes Length: 0.4
+        Axes Radius: 0.03
+      Covariance:
+        Value: false
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Measure
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Focal Point:
+        X: 1.5
+        Y: 0
+        Z: 0
+      Distance: 7
+      Pitch: 0.75
+      Yaw: 3.6
+      Target Frame: map
+Window Geometry:
+  Width: 1600
+  Height: 950

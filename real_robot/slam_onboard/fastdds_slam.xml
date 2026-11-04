@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FastDDS profile for k1_cuvslam_node + nvblox_node on the K1. The vendor camera reaches us over UDP only
+     (fastdds_profile_udp_only.xml) and ~1.3 MB RGB-D pairs overflow the 208 KB default socket buffer under load
+     (millions of "receive buffer errors"). Needs net.core.rmem_max >= 8 MB (run_slam.sh sets it). SHM carries
+     node -> nvblox images. -->
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profile">
+  <transport_descriptors>
+    <transport_descriptor>
+      <transport_id>udp_big</transport_id>
+      <type>UDPv4</type>
+      <sendBufferSize>8388608</sendBufferSize>
+      <receiveBufferSize>8388608</receiveBufferSize>
+    </transport_descriptor>
+    <transport_descriptor>
+      <transport_id>shm_big</transport_id>
+      <type>SHM</type>
+      <segment_size>16777216</segment_size>
+    </transport_descriptor>
+  </transport_descriptors>
+  <participant profile_name="k1_slam" is_default_profile="true">
+    <rtps>
+      <userTransports>
+        <transport_id>shm_big</transport_id>
+        <transport_id>udp_big</transport_id>
+      </userTransports>
+      <useBuiltinTransports>false</useBuiltinTransports>
+    </rtps>
+  </participant>
+</profiles>

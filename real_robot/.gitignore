@@ -1,0 +1,9 @@
+# Bag data and local credentials never go in git.
+bags/
+*.db3
+*.mcap
+metadata.yaml
+config/env.sh.local
+config/*.local
+__pycache__/
+*.pyc

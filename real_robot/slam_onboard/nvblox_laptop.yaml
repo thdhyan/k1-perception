@@ -1,0 +1,30 @@
+# nvblox_node (Isaac ROS 4.5) on the laptop, in docker (laptop_nvblox.sh). Inputs: /k1_0/slam/{depth,color}/* from
+# k1_nvblox_rx.py (5 Hz from the K1); pose + robot TF from laptop_rviz.sh.
+nvblox_node:
+  ros__parameters:
+    global_frame: map
+    pose_frame: trunk
+    map_clearing_frame_id: trunk
+    esdf_slice_bounds_visualization_attachment_frame_id: trunk
+    map_clearing_radius_m: -1.0          # default 7 m erases the map behind the robot
+    mapping_type: static_tsdf            # mesh + TSDF voxels + 2D ESDF / occupancy grid
+    voxel_size: 0.05
+    num_cameras: 1
+    use_depth: true
+    use_color: true
+    use_lidar: false
+    input_qos: SYSTEM_DEFAULT
+    esdf_mode: 2d
+    max_back_projection_distance: 4.0
+    layer_visualization_exclusion_radius_m: -1.0
+    layer_visualization_exclusion_height_m: -1.0
+    integrate_depth_rate_hz: 10.0        # input is ~5 Hz; integrate every frame
+    update_mesh_rate_hz: 5.0
+    update_esdf_rate_hz: 5.0
+    publish_layer_rate_hz: 2.0
+    static_mapper:
+      projective_integrator_max_integration_distance_m: 4.0   # stereo depth noisy past ~4 m
+      # map frame z = 0 on the floor: obstacles 10 cm .. 1.2 m make the 2D map
+      esdf_slice_min_height: 0.10
+      esdf_slice_max_height: 1.20
+      esdf_slice_height: 0.10
